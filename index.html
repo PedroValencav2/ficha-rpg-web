@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha D&D 5e</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="ficha-container">
+        <header>
+            <div class="bloco-informacoes">
+                <div class="linha-principal">
+                    <input type="text" placeholder="Nome do Personagem" id="char-name">
+                    <input type="text" placeholder="Classe" id="char-class">
+                </div>
+                <div class="linha-secundaria">
+                    <input type="text" placeholder="Raça" id="char-race">
+                    <input type="text" placeholder="Subclasse" id="char-subclass">
+                    <input type="text" placeholder="Antecedente" id="char-background">
+                </div>
+            </div>
+
+            <div class="bloco-progressao">
+                <div class="campo-progresso">
+                    <label for="char-level">Nível</label>
+                    <input type="number" id="char-level" value="1" min="1" max="20">
+                    <label for="char-xp">XP</label>
+                    <input type="number" id="char-xp" placeholder="0" min="0">
+                </div>
+            </div>
+        </header>
+        <div class="atributos-grid">
+            <div class="atributo-card">
+                <label for="str">Força</label>
+                <input type="number" id="str" value="10" oninput="calcular()">
+                <div class="modificador" id="str-mod">+0</div>
+            </div>
+
+            <div class="atributo-card">
+                <label for="dex">Destreza</label>
+                <input type="number" id="dex" value="10" oninput="calcular()">
+                <div class="modificador" id="dex-mod">+0</div>
+            </div>
+
+            <div class="atributo-card">
+                <label for="con">Constituição</label>
+                <input type="number" id="con" value="10" oninput="calcular()">
+                <div class="modificador" id="con-mod">+0</div>
+            </div>
+
+            <div class="atributo-card">
+                <label for="int">Inteligência</label>
+                <input type="number" id="int" value="10" oninput="calcular()">
+                <div class="modificador" id="int-mod">+0</div>
+            </div>
+
+            <div class="atributo-card">
+                <label for="wis">Sabedoria</label>
+                <input type="number" id="wis" value="10" oninput="calcular()">
+                <div class="modificador" id="wis-mod">+0</div>
+            </div>
+
+            <div class="atributo-card">
+                <label for="cha">Carisma</label>
+                <input type="number" id="cha" value="10" oninput="calcular()">
+                <div class="modificador" id="cha-mod">+0</div>
+            </div>
+        </div>
+
+        <div class="status-secundarios">
+            <div class="caixa">
+                <label>CA</label>
+                <input type="number" value="10">
+                <label>Sabedoria Passiva</label>
+                <span id="passive-perception">10</span>
+            </div>
+            
+            <div class="bloco-vida">
+                <div class="vida-valores">
+                    <div class="caixa-vida">
+                        <label for="hp-max">PV Máximos</label>
+                        <input type="number" id="hp-max" placeholder="0" min="0">
+                        <label for="hp-current">PV Atuais</label>
+                        <input type="number" id="hp-current" placeholder="0" min="0">
+                        <label for="hp-temp">PV Temporários</label>
+                        <input type="number" id="hp-temp" placeholder="0" min="0">
+                    </div>
+                </div>
+
+                <div class="dados-vida">
+                    <div class="caixa-dados">
+                        <label for="hit-dice-total">Total de Dados de Vida</label>
+                        <input type="text" id="hit-dice-total" placeholder="1d8">
+                        <label for="hit-dice-remaining">Dados de Vida Restantes</label>
+                        <input type="number" id="hit-dice-remaining" min="0">
+                    </div>
+                </div>
+
+                <div class="testes-morte"> 
+                    <span class="titulo-morte">Testes Contra Morte</span>
+                    <div class="linha-morte">
+                        <label>Sucessos</label>
+                        <div class="checkbox-grupo"> 
+                            <input type="checkbox" id="death-success-1">
+                            <input type="checkbox" id="death-success-2">
+                            <input type="checkbox" id="death-success-3">
+                        </div>
+                        <label>Falhas</label>
+                        <div class="checkbox-grupo">
+                            <input type="checkbox" id="death-failure-1">
+                            <input type="checkbox" id="death-failure-2">
+                            <input type="checkbox" id="death-failure-3">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
