@@ -67,6 +67,146 @@
             </div>
         </div>
 
+        <div class="salvaguardas-container">
+            <h3> Testes de Salvaguardas </h3>
+            <div class="lista-salvaguardas">
+                <div class="salvaguardas-linha">
+                    <input type="checkbox" id="prof-save-str" onchange="calcularSalvaguardas()">
+                    <span class=salvaguarda-mod id="mod-save-str"> +0 </span>
+                    <label for="prof-save-str"> Força </label>
+                    <input type="checkbox" id="prof-save-dex" onchange="calcularSalvaguardas()">
+                    <span class=salvaguarda-mod id="mod-save-dex"> +0 </span>
+                    <label for="prof-save-dex"> Destreza </label>
+                    <input type="checkbox" id="prof-save-con" onchange="calcularSalvaguardas()">
+                    <span class=salvaguarda-mod id="mod-save-con"> +0 </span>
+                    <label for="prof-save-con"> Constituição </label>
+                    <input type="checkbox" id="prof-save-int" onchange="calcularSalvaguardas()">
+                    <span class=salvaguarda-mod id="mod-save-int"> +0 </span>
+                    <label for="prof-save-int"> Inteligência </label>
+                    <input type="checkbox" id="prof-save-wis" onchange="calcularSalvaguardas()">
+                    <span class=salvaguarda-mod id="mod-save-wis"> +0 </span>
+                    <label for="prof-save-wis"> Sabedoria </label>
+                    <input type="checkbox" id="prof-save-cha" onchange="calcularSalvaguardas()">
+                    <span class=salvaguarda-mod id="mod-save-cha"> +0 </span>
+                    <label for="prof-save-cha"> Carisma </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="pericias-container"> 
+            <h3> Pericias </h3>
+            <div class="lista-pericias">
+                <div class="pericia-linha">
+                    <input type="checkbox" id="prof-acrobacia" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-acrobacia"> +0 </span>
+                    <label for="prof-acrobacia"> Acrobacia <small> (DES) </small></label>
+                    <input type="checkbox" id="prof-adestrar" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-adestrar"> +0 </span>
+                    <label for="prof-adestrar"> Adestrar Animais <small> (SAB) </small></label>
+                    <input type="checkbox" id="prof-arcanismo" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-arcanismo"> +0 </span>
+                    <label for="prof-arcanismo"> Arcanismo <small> (INT) </small></label>
+                    <input type="checkbox" id="prof-atletismo" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-atletismo"> +0 </span>
+                    <label for="prof-atletismo"> Atletismo <small> (FOR) </small></label>
+                    <input type="checkbox" id="prof-atuacao" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-atuacao"> +0 </span>
+                    <label for="prof-atuacao"> Atuação <small> (CAR) </small></label>
+                    <input type="checkbox" id="prof-blefar" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-blefar"> +0 </span>
+                    <label for="prof-blefar"> Blefar <small> (CAR) </small></label>
+                    <input type="checkbox" id="prof-furtividade" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-furtividade"> +0 </span>
+                    <label for="prof-furtividade"> Furtividade <small> (DES) </small></label>
+                    <input type="checkbox" id="prof-historia" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-historia"> +0 </span>
+                    <label for="prof-historia"> História <small> (INT) </small></label>
+                    <input type="checkbox" id="prof-intuicao" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-intuicao"> +0 </span>
+                    <label for="prof-intuicao"> Intuição <small> (SAB) </small></label>
+                    <input type="checkbox" id="prof-intimidacao" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-intimidacao"> +0 </span>
+                    <label for="prof-intimidacao"> Intimidação <small> (CAR) </small></label>
+                    <input type="checkbox" id="prof-investigacao" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-investigacao"> +0 </span>
+                    <label for="prof-investigacao"> Investigação <small> (INT) </small></label>
+                    <input type="checkbox" id="prof-medicina" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-medicina"> +0 </span>
+                    <label for="prof-medicina"> Medicina <small> (SAB) </small></label>
+                    <input type="checkbox" id="prof-natureza" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-natureza"> +0 </span>
+                    <label for="prof-natureza"> Natureza <small> (INT) </small></label>
+                    <input type="checkbox" id="prof-percepcao" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-percepcao"> +0 </span>
+                    <label for="prof-percepcao"> Percepção <small> (SAB) </small></label>
+                    <input type="checkbox" id="prof-persuasao" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-persuasao"> +0 </span>
+                    <label for="prof-persuasao"> Persuasão <small> (CAR) </small></label>
+                    <input type="checkbox" id="prof-prestidigitacao" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-prestidigitacao"> +0 </span>
+                    <label for="prof-prestidigitacao"> Prestidigitação <small> (DES) </small></label>
+                    <input type="checkbox" id="prof-religiao" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-religiao"> +0 </span>
+                    <label for="prof-religiao"> Religião <small> (INT) </small></label>
+                    <input type="checkbox" id="prof-sobrevivencia" onchange="calcularPericias()">
+                    <span class="pericia-mod" id="mod-sobrevivencia"> +0 </span>
+                    <label for="prof-sobrevivencia"> Sobrevivência <small> (SAB) </small></label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ataque-container">
+            <h3> Ataques e Magias</h3>
+            <table class="tabela-ataques">
+                <thead>
+                    <tr>
+                        <th> Nome </th>
+                        <th> Bônus de Ataque </th>
+                        <th> Dano/Tipo </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> <input type="text" placeholder="Ex: Espada Curta"> </td>
+                        <td> <input type="text" placeholder="+5"> </td>
+                        <td> <input type="text" placeholder="1d6 Cortante"> </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" placeholder="Ex: Arco Longo"> </td>
+                        <td> <input type="text" placeholder="+5"> </td>
+                        <td> <input type="text" placeholder="1d8 Perfurante"> </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" placeholder="Ex: Bola de Fogo"> </td>
+                        <td> <input type="text" placeholder="CD Destreza"> </td>
+                        <td> <input type="text" placeholder="8d6 Fogo"> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="caracteristicas-container">
+            <h3> Talentos e Caracteristicas de Classe </h3>
+            <div class="campo-texto-caracteristicas">
+                <textarea id="class-features" placeholder="Ex: &#10; - Fúria (Bárbaro) Você pode entrar em fúria com ação bônus... &#20;" rows="10"></textarea>
+            </div>
+        </div>
+
+        <div class="raciais-container"> 
+            <h3> Traços e Habilidades Raciais </h3>
+            <div class=campo-texto-raciais>
+                <textarea id="racial-traits" placeholder="Ex: &#10;- Visão no Escuro: Enxerga na penumbra como se fosse luz plena a até 18 metros...&#10;" rows="10"></textarea>
+            </div>
+        </div>
+
+        <div class="proficiencias-idiomas-container"> 
+            <h3> Proficiências e Idiomas </h3>
+            <div class="campo-texto-proficiencia">
+                <textarea id="other-proficiencies" placeholder="Ex: &#10;- Idiomas: Comum, Élfico, Anão&#10;- Armas: Armas Simples, Espadas Longas&#10;- Armaduras: Leves, Médias, Escudos&#10;- Ferramentas: Kit de Disfarce, Ferramentas de Ferreiro" rows="10"></textarea>
+            </div>
+        </div>
+
         <div class="status-secundarios">
             <div class="caixa">
                 <label>CA</label>
@@ -116,6 +256,12 @@
 
             </div>
         </div>
+
+        <section id="aba-magias" class="tab-conteudo">
+            <h2> Magias </h2>
+            <p>Espaço reservado para os Espaços de Magia (Spell Slots) e Magias Conhecidas/Preparadas.</p>
+        </section>
+
     </div>
 </body>
 </html>
