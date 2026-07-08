@@ -1,0 +1,886 @@
+/* ==========================================================================
+   1. RESET, VARIÁVEIS E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --cor-fundo: #1a1a1a;
+    --cor-ficha: #2d2d2d;
+    --cor-borda: #4a4a4a;
+    --cor-texto: #eeeeee;
+    --cor-texto-mutado: #aaaaaa;
+    --cor-primaria: #d4af37; /* Dourado RPG */
+    --cor-primaria-hover: #aa8c2c;
+    --cor-input-fundo: #1e1e1e;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.ficha-container {
+    background-color: var(--cor-ficha);
+    border: 2px solid var(--cor-borda);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* ESTRUTURA VISUAL DO MENU DE ABAS */
+.abas-menu {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid var(--cor-borda);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    background-color: #3d3d3d;
+    color: var(--cor-texto-mutado);
+    border: 1px solid var(--cor-borda);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    color: var(--cor-texto);
+    background-color: #4d4d4d;
+}
+
+.tab-btn.active {
+    background-color: var(--cor-primaria);
+    color: #1a1a1a;
+    border-color: var(--cor-primaria);
+}
+
+/* LÓGICA DE EXIBIÇÃO DAS ABAS */
+.tab-conteudo {
+    display: none;
+}
+
+.tab-conteudo.active {
+    display: block;
+}
+
+/* ==========================================================================
+   2. ABA GERAL: CABEÇALHO E ATRIBUTOS
+   ========================================================================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: #222222;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--cor-borda);
+    margin-bottom: 25px;
+}
+
+.bloco-informacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+}
+
+.linha-principal, .linha-secundaria {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+header input[type="text"] {
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    color: var(--cor-texto);
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    transition: border-color 0.2s ease;
+}
+
+header input[type="text"]:focus {
+    border-color: var(--cor-primaria);
+    outline: none;
+}
+
+.linha-principal input[type="text"] {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bloco-progressao {
+    background-color: #1a1a1a;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid var(--cor-borda);
+    min-width: 220px;
+}
+
+.campo-progresso {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo-progresso label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--cor-texto-mutado);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.campo-progresso input[type="number"] {
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    color: var(--cor-texto);
+    padding: 6px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#prof-bonus {
+    font-size: 16px;
+    color: var(--cor-primaria);
+    font-weight: bold;
+    padding-top: 2px;
+}
+
+/* GRID DE ATRIBUTOS */
+.atributos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.atributo-card {
+    background-color: #222222;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.atributo-card:hover {
+    border-color: var(--cor-primaria);
+    transform: translateY(-2px);
+}
+
+.atributo-card label {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--cor-texto-mutado);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.modificador {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--cor-primaria);
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    width: 60px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.atributo-card input[type="number"] {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+    font-size: 14px;
+    text-align: center;
+    width: 40px;
+    padding: 2px;
+    font-weight: bold;
+}
+
+.atributo-card input[type="number"]:focus {
+    outline: none;
+    border-bottom-color: var(--cor-primaria);
+}
+
+.atributo-card input[type="number"]::-webkit-inner-spin-button,
+.atributo-card input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.atributo-card input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* ==========================================================================
+   3. ABA GERAL: PERÍCIAS, SALVAGUARDAS E COMBATE
+   ========================================================================== */
+.salvaguardas-container, .pericias-container {
+    background-color: #222222;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.salvaguardas-container h3, .pericias-container h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--cor-primaria);
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.lista-salvaguardas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.lista-pericias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+    width: 100%;
+}
+
+.salvaguarda-linha, .pericia-linha {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 4px;
+    background-color: var(--cor-input-fundo);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    flex-wrap: wrap;
+}
+
+.salvaguarda-linha:hover, .pericia-linha:hover {
+    border-color: #555555;
+    background-color: #252525;
+}
+
+.salvaguarda-mod, .pericia-mod {
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--cor-primaria);
+    min-width: 25px;
+    text-align: center;
+}
+
+.salvaguarda-linha label, .pericia-linha label {
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--cor-texto);
+    flex-grow: 1;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.2;
+}
+
+.pericia-linha small {
+    color: var(--cor-texto-mutado);
+    font-size: 11px;
+    margin-left: 3px;
+}
+
+.salvaguarda-linha input[type="checkbox"], 
+.pericia-linha input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #1a1a1a;
+    border: 1px solid var(--cor-borda);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.salvaguarda-linha input[type="checkbox"]:checked, 
+.pericia-linha input[type="checkbox"]:checked {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+.ataques-container, .caracteristicas-container, 
+.raciais-container, .proficiencias-idiomas-container {
+    background-color: #222222;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.ataques-container h3, .caracteristicas-container h3, 
+.raciais-container h3, .proficiencias-idiomas-container h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--cor-primaria);
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.tabela-ataques {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+.tabela-ataques th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--cor-texto-mutado);
+    padding: 8px;
+    border-bottom: 2px solid var(--cor-borda);
+    letter-spacing: 0.5px;
+}
+
+.tabela-ataques td {
+    padding: 6px 4px;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.tabela-ataques input[type="text"] {
+    width: 100%;
+    background-color: var(--cor-input-fundo);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: var(--cor-texto);
+    padding: 8px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.tabela-ataques input[type="text"]:focus {
+    border-color: var(--cor-primaria);
+    background-color: #151515;
+    outline: none;
+}
+
+/* TEXTAREAS GERAIS DA PRIMEIRA ABA */
+.campo-texto-caracteristicas textarea,
+.campo-texto-raciais textarea,
+.campo-texto-proficiencias textarea,
+.proficiencias-idiomas-container textarea {
+    width: 100%;
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    color: var(--cor-texto);
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    resize: vertical;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.campo-texto-caracteristicas textarea:focus,
+.campo-texto-raciais textarea:focus,
+.campo-texto-proficiencias textarea:focus,
+.proficiencias-idiomas-container textarea:focus {
+    border-color: var(--cor-primaria);
+    outline: none;
+}
+
+/* SCROLLBARS DOS TEXTAREAS GERAIS */
+.campo-texto-caracteristicas textarea::-webkit-scrollbar,
+.campo-texto-raciais textarea::-webkit-scrollbar,
+.campo-texto-proficiencias textarea::-webkit-scrollbar,
+.proficiencias-idiomas-container textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.campo-texto-caracteristicas textarea::-webkit-scrollbar-track,
+.campo-texto-raciais textarea::-webkit-scrollbar-track,
+.campo-texto-proficiencias textarea::-webkit-scrollbar-track,
+.proficiencias-idiomas-container textarea::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+.campo-texto-caracteristicas textarea::-webkit-scrollbar-thumb,
+.campo-texto-raciais textarea::-webkit-scrollbar-thumb,
+.campo-texto-proficiencias textarea::-webkit-scrollbar-thumb,
+.proficiencias-idiomas-container textarea::-webkit-scrollbar-thumb {
+    background: var(--cor-borda);
+    border-radius: 4px;
+}
+
+.campo-texto-caracteristicas textarea::-webkit-scrollbar-thumb:hover,
+.campo-texto-raciais textarea::-webkit-scrollbar-thumb:hover,
+.campo-texto-proficiencias textarea::-webkit-scrollbar-thumb:hover,
+.proficiencias-idiomas-container textarea::-webkit-scrollbar-thumb:hover {
+    background: var(--cor-primaria);
+}
+
+/* STATUS SECUNDÁRIOS E VIDA */
+.status-secundarios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.status-secundarios .caixa {
+    background-color: #222222;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.status-secundarios .caixa label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--cor-texto-mutado);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.status-secundarios .caixa input[type="number"] {
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    color: var(--cor-primaria);
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px;
+    width: 80px;
+    margin-bottom: 5px;
+}
+
+#passive-perception {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--cor-primaria);
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    padding: 4px 12px;
+    border-radius: 4px;
+    width: fit-content;
+    text-align: center;
+}
+
+.bloco-vida {
+    background-color: #222222;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.caixa-vida {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.caixa-vida label {
+    grid-row: 1;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--cor-texto-mutado);
+    font-weight: bold;
+}
+
+.caixa-vida input[type="number"] {
+    grid-row: 2;
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    color: var(--cor-texto);
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+.caixa-dados {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    border-top: 1px solid #3a3a3a;
+    padding-top: 12px;
+}
+
+.caixa-dados label {
+    font-size: 11px;
+    color: var(--cor-texto-mutado);
+}
+
+.caixa-dados input {
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    color: var(--cor-texto);
+    padding: 6px;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+}
+
+.testes-morte {
+    border-top: 1px solid #3a3a3a;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.titulo-morte {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--cor-texto-mutado);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.linha-morte {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.linha-morte label {
+    font-size: 12px;
+    color: var(--cor-texto);
+}
+
+.checkbox-grupo {
+    display: flex;
+    gap: 6px;
+    margin-right: 15px;
+}
+
+.checkbox-grupo input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #1a1a1a;
+    transition: all 0.2s ease;
+}
+
+#death-success-1:checked, #death-success-2:checked, #death-success-3:checked {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+    box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+}
+
+#death-failure-1:checked, #death-failure-2:checked, #death-failure-3:checked {
+    background-color: #ff4d4d;
+    border-color: #ff4d4d;
+    box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
+}
+
+/* ==========================================================================
+   4. SEÇÃO EXCLUSIVA DA ABA DE MAGIAS (MAPEADA COM O SEU HTML)
+   ========================================================================== */
+
+/* Ajuste do Cabeçalho Mágico */
+.cabecalho-magico {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #222222;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--cor-borda);
+    margin-bottom: 25px;
+}
+
+.campo-magico {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.campo-magico label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--cor-texto-mutado);
+    font-weight: bold;
+}
+
+.campo-magico select,
+.campo-magico span {
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    color: var(--cor-primaria);
+    font-weight: bold;
+    padding: 6px 12px;
+}
+
+.campo-magico select {
+    cursor: pointer;
+    outline: none;
+}
+
+/* Espaços de Magia (Slots) */
+.slots-magia-container {
+    background-color: #222222;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    padding: 15px;
+    width: 100%;
+}
+
+.slots-magia-container h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--cor-primaria);
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.circulo-slot-linha {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.campos-slots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--cor-input-fundo);
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #3a3a3a;
+    margin-bottom: 5px;
+}
+
+.nome-circulo {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--cor-texto);
+    display: flex;
+    align-items: center;
+}
+
+.campos-slots input[type="number"] {
+    width: 45px;
+    background-color: #111;
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+    border-radius: 4px;
+    padding: 2px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Grade de Grimório (Textareas por Círculo) */
+.lista-magias-container {
+    background-color: #222222;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    padding: 15px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.lista-magias-container h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--cor-primaria);
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.grade-grimorio-linhas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.bloco-nivel-magia {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.titulo-nivel-magia {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--cor-primaria);
+    text-transform: uppercase;
+}
+
+.textarea-magias {
+    width: 100%;
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    color: var(--cor-texto);
+    padding: 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    resize: vertical;
+    font-family: monospace;
+}
+
+.textarea-magias:focus {
+    border-color: var(--cor-primaria);
+    outline: none;
+}
+
+/* ==========================================================================
+   5. SEÇÃO EXCLUSIVA DO INVENTÁRIO E EQUIPAMENTOS
+   ========================================================================== */
+.inventario-container {
+    background-color: #222222;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    padding: 15px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.inventario-container h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--cor-primaria);
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.grade-inventario {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .grade-inventario {
+        grid-template-columns: 1fr;
+    }
+}
+
+.bloco-moedas h4, .topo-itens h4 {
+    font-size: 12px;
+    color: var(--cor-texto-mutado);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.linha-moeda {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.linha-moeda label {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.linha-moeda input {
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-primaria);
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.topo-itens {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.controle-carga label {
+    font-size: 12px;
+    color: var(--cor-texto-mutado);
+}
+
+.controle-carga input {
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#inventory-list {
+    width: 100%;
+    background-color: var(--cor-input-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    color: var(--cor-texto);
+    padding: 10px;
+    font-size: 13px;
+    resize: vertical;
+    font-family: monospace;
+}
+
+#inventory-list:focus {
+    border-color: var(--cor-primaria);
+    outline: none;
+}
