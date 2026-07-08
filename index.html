@@ -258,8 +258,180 @@
         </div>
 
         <section id="aba-magias" class="tab-conteudo">
-            <h2> Magias </h2>
-            <p>Espaço reservado para os Espaços de Magia (Spell Slots) e Magias Conhecidas/Preparadas.</p>
+            <div class="cabecalho-magico">
+                <div class="campo-magico">
+                    <label for="spell-casting-ability"> Atributo de Conjuração </label>
+                    <select id="spell-casting-ability">
+                        <option value="int"> Inteligência </option>
+                        <option value="wis"> Sabedoria </option>
+                        <option value="cha"> Carisma </option>
+                    </select>
+
+                    <label> Modificador de Conjuração </label>
+                    <span id="spell-mod-exibir"> +0 </span>
+
+                    <label> CD de Resistência a Magias </label>
+                    <span id="spell-save-dc"> 8 </span>
+
+                    <label> Bônus de Ataque de Magias </label>
+                    <span id="spell-attack-bonus"> +0 </span>
+                </div>
+                <div class="slots-magia-container">
+                    <h3> Espaços de Magia Por Circulo </h3>
+                    <div class="grade-slots-magia">
+                        <div class="circulo-slot-linha">
+                            <span class="nome-circulo"> 1º Circulo </span>
+                            <div class="campos-slots">
+                                <label> Total: </label>
+                                <input type="number" id="slots-total-lvl1" min="0" max="4" value="0">
+                                <label> Gastos: </label>
+                                <input type="number" id="slots-gastos-lvl1" min="0" max="4" value="0">
+                            </div>
+                            <span class="nome-circulo"> 2º Circulo </span>
+                            <div class="campos-slots">
+                                <label> Total: </label>
+                                <input type="number" id="slots-total-lvl2" min="0" max="3" value="0">
+                                <label> Gastos: </label>
+                                <input type="number" id="slots-gastos-lvl2" min="0" max="3" value="0">
+                            </div>
+                            <span class="nome-circulo"> 3º Circulo </span>
+                            <div class="campos-slots">
+                                <label> Total: </label>
+                                <input type="number" id="slots-total-lvl3" min="0" max="3" value="0">
+                                <label> Gastos: </label>
+                                <input type="number" id="slots-gastos-lvl3" min="0" max="3" value="0">
+                            </div>
+                            <span class="nome-circulo"> 4º Circulo </span>
+                            <div class="campos-slots">
+                                <label> Total: </label>
+                                <input type="number" id="slots-total-lvl4" min="0" max="3" value="0">
+                                <label> Gastos: </label>
+                                <input type="number" id="slots-gastos-lvl4" min="0" max="3" value="0">
+                            </div>
+                            <span class="nome-circulo"> 5º Circulo </span>
+                            <div class="campos-slots">
+                                <label> Total: </label>
+                                <input type="number" id="slots-total-lvl5" min="0" max="3" value="0">
+                                <label> Gastos: </label>
+                                <input type="number" id="slots-gastos-lvl5" min="0" max="3" value="0">
+                            </div>
+                            <span class="nome-circulo"> 6º Circulo </span>
+                            <div class="campos-slots">
+                                <label> Total: </label>
+                                <input type="number" id="slots-total-lvl6" min="0" max="2" value="0">
+                                <label> Gastos: </label>
+                                <input type="number" id="slots-gastos-lvl6" min="0" max="2" value="0">
+                            </div>
+                            <span class="nome-circulo"> 7º Circulo </span>
+                            <div class="campos-slots">
+                                <label> Total: </label>
+                                <input type="number" id="slots-total-lvl7" min="0" max="2" value="0">
+                                <label> Gastos: </label>
+                                <input type="number" id="slots-gastos-lvl7" min="0" max="2" value="0">
+                            </div>
+                            <span class="nome-circulo"> 8º Circulo </span>
+                            <div class="campos-slots">
+                                <label> Total: </label>
+                                <input type="number" id="slots-total-lvl8" min="0" max="1" value="0">
+                                <label> Gastos: </label>
+                                <input type="number" id="slots-gastos-lvl8" min="0" max="1" value="0">
+                            </div>
+                            <span class="nome-circulo"> 9º Circulo </span>
+                            <div class="campos-slots">
+                                <label> Total: </label>
+                                <input type="number" id="slots-total-lvl9" min="0" max="1" value="0">
+                                <label> Gastos: </label>
+                                <input type="number" id="slots-gastos-lvl9" min="0" max="1" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lista-magias-container">
+                    <h3> Magias Conhecidas/Preparadas </h3>
+                    <div class="grade-grimorio-linhas">
+                        <div class="bloco-nivel-magia">
+                            <div class="bloco-nivel-magia">
+                                <span class="titulo-nivel-magia"> Truques (Nivel 0) </span>
+                            </div>
+                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Toque Chocante&#10;- Mãos Mágicas&#10;- Ilusão Menor" rows="6"></textarea>
+                        </div>
+
+                        <div class="bloco-nivel-magia">
+                            <div class="bloco-nivel-magia">
+                                <span class="titulo-nivel-magia"> 1º Círculo </span>
+                            </div>
+                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Mísseis Mágicos (P)&#10;- Armadura Arpão&#10;- Curar Ferimentos" rows="6"></textarea>
+                        </div>
+
+                        <div class="bloco-nivel-magia">
+                            <div class="bloco-nivel-magia">
+                                <span class="titulo-nivel-magia"> 2º Círculo </span>
+                            </div>
+                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Passo Nebuloso (P)&#10;- Imagem Espelhada" rows="6"></textarea>
+                        </div>
+
+                        <div class="bloco-nivel-magia">
+                            <div class="bloco-nivel-magia">
+                                <span class="titulo-nivel-magia"> 3º Círculo </span>
+                            </div>
+                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Bola de Fogo (P)&#10;- Contra-enfeitiçar" rows="6"></textarea>
+                        </div>
+
+                        <div class="bloco-nivel-magia">
+                            <div class="bloco-nivel-magia">
+                                <span class="titulo-nivel-magia"> 4º Círculo </span>
+                            </div>
+                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Porta Dimensional&#10;- Pele de Pedra" rows="6"></textarea>
+                        </div>
+
+                        <div class="bloco-nivel-magia">
+                            <div class="bloco-nivel-magia">
+                                <span class="titulo-nivel-magia"> 5º Círculo </span>
+                            </div>
+                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Névoa Mortal&#10;- Dominar Pessoa" rows="6"></textarea>
+                        </div>
+
+                        <div class="bloco-nivel-magia">
+                            <div class="bloco-nivel-magia">
+                                <span class="titulo-nivel-magia"> 6º ao 9º Círculo </span>
+                            </div>
+                            <textarea class="textarea-magias"placeholder="6º: Desintegrar&#10;7º: Teletransporte&#10;8º: Dominar Monstro&#10;9º: Desejo" rows="8"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="inventario-container">
+                    <h3> Inventario e Equipamentos </h3>
+                    <div class="grade-inventario">
+                        <div class="bloco-moedas">
+                            <h4> Moedas </h4>
+                            <div class="linha-moeda">
+                                <label for="coin-cp"> PC (Cobre): </label>
+                                <input type="number" id="coin-cp" value="0" min="0">
+                                <label for="coin-sp"> PP (Prata): </label>
+                                <input type="number" id="coin-sp" value="0" min="0">
+                                <label for="coin-ep"> PE (Electro): </label>
+                                <input type="number" id="coin-ep" value="0" min="0">
+                                <label for="coin-gp"> PO (Ouro): </label>
+                                <input type="number" id="coin-gp" value="0" min="0">
+                                <label for="coin-pp"> PL (Platina): </label>
+                                <input type="number" id="coin-pp" value="0" min="0">
+                            </div> 
+                        </div>
+
+                        <div class="bloco-itens">
+                            <div class="topo-itens">
+                                <h4> Equipamentos e Itens Possuídos </h4>
+                                <div class="controle-carga">
+                                    <label for="weight-total"> Peso Total: </label>
+                                    <input type="text" id="weight-total" placeholder="0 kg" style="width: 70px;">
+                                </div>
+                            </div>
+                            <textarea id="inventory-list" placeholder="Ex:&#10;- Armadura de Couro Batido (Equipada)&#10;- Mochila de Engenheiro&#10;- Corda de Cânhamo (15 metros)&#10;- Rações de Viagem (x5)&#10;- Tochas (x3)" rows="10"></textarea>
+                        </div>
+                    </div>
+
         </section>
 
     </div>
