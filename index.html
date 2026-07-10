@@ -1,265 +1,301 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Ficha D&D 5e</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Personagem - RPG</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="ficha-container">
-        <header>
-            <div class="bloco-informacoes">
-                <div class="linha-principal">
-                    <input type="text" placeholder="Nome do Personagem" id="char-name">
-                    <input type="text" placeholder="Classe" id="char-class">
-                </div>
-                <div class="linha-secundaria">
-                    <input type="text" placeholder="Raça" id="char-race">
-                    <input type="text" placeholder="Subclasse" id="char-subclass">
-                    <input type="text" placeholder="Antecedente" id="char-background">
-                </div>
-            </div>
-
-            <div class="bloco-progressao">
-                <div class="campo-progresso">
-                    <label for="char-level">Nível</label>
-                    <input type="number" id="char-level" value="1" min="1" max="20">
-                    <label for="char-xp">XP</label>
-                    <input type="number" id="char-xp" placeholder="0" min="0">
-                    <label> Bônus de Proficiência </label>
-                    <span id="prof-bonus"> +2 </span>
-                </div>
-            </div>
-        </header>
-        <div class="atributos-grid">
-            <div class="atributo-card">
-                <label for="str">Força</label>
-                <input type="number" id="str" value="10" oninput="calcular()">
-                <div class="modificador" id="str-mod">+0</div>
-            </div>
-
-            <div class="atributo-card">
-                <label for="dex">Destreza</label>
-                <input type="number" id="dex" value="10" oninput="calcular()">
-                <div class="modificador" id="dex-mod">+0</div>
-            </div>
-
-            <div class="atributo-card">
-                <label for="con">Constituição</label>
-                <input type="number" id="con" value="10" oninput="calcular()">
-                <div class="modificador" id="con-mod">+0</div>
-            </div>
-
-            <div class="atributo-card">
-                <label for="int">Inteligência</label>
-                <input type="number" id="int" value="10" oninput="calcular()">
-                <div class="modificador" id="int-mod">+0</div>
-            </div>
-
-            <div class="atributo-card">
-                <label for="wis">Sabedoria</label>
-                <input type="number" id="wis" value="10" oninput="calcular()">
-                <div class="modificador" id="wis-mod">+0</div>
-            </div>
-
-            <div class="atributo-card">
-                <label for="cha">Carisma</label>
-                <input type="number" id="cha" value="10" oninput="calcular()">
-                <div class="modificador" id="cha-mod">+0</div>
-            </div>
+        
+        <div class="abas-menu">
+            <button class="tab-btn active" data-tab="aba-geral">Geral</button>
+            <button class="tab-btn" data-tab="aba-magias">Magias & Inventário</button>
         </div>
 
-        <div class="salvaguardas-container">
-            <h3> Testes de Salvaguardas </h3>
-            <div class="lista-salvaguardas">
-                <div class="salvaguardas-linha">
-                    <input type="checkbox" id="prof-save-str" onchange="calcularSalvaguardas()">
-                    <span class=salvaguarda-mod id="mod-save-str"> +0 </span>
-                    <label for="prof-save-str"> Força </label>
-                    <input type="checkbox" id="prof-save-dex" onchange="calcularSalvaguardas()">
-                    <span class=salvaguarda-mod id="mod-save-dex"> +0 </span>
-                    <label for="prof-save-dex"> Destreza </label>
-                    <input type="checkbox" id="prof-save-con" onchange="calcularSalvaguardas()">
-                    <span class=salvaguarda-mod id="mod-save-con"> +0 </span>
-                    <label for="prof-save-con"> Constituição </label>
-                    <input type="checkbox" id="prof-save-int" onchange="calcularSalvaguardas()">
-                    <span class=salvaguarda-mod id="mod-save-int"> +0 </span>
-                    <label for="prof-save-int"> Inteligência </label>
-                    <input type="checkbox" id="prof-save-wis" onchange="calcularSalvaguardas()">
-                    <span class=salvaguarda-mod id="mod-save-wis"> +0 </span>
-                    <label for="prof-save-wis"> Sabedoria </label>
-                    <input type="checkbox" id="prof-save-cha" onchange="calcularSalvaguardas()">
-                    <span class=salvaguarda-mod id="mod-save-cha"> +0 </span>
-                    <label for="prof-save-cha"> Carisma </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="pericias-container"> 
-            <h3> Pericias </h3>
-            <div class="lista-pericias">
-                <div class="pericia-linha">
-                    <input type="checkbox" id="prof-acrobacia" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-acrobacia"> +0 </span>
-                    <label for="prof-acrobacia"> Acrobacia <small> (DES) </small></label>
-                    <input type="checkbox" id="prof-adestrar" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-adestrar"> +0 </span>
-                    <label for="prof-adestrar"> Adestrar Animais <small> (SAB) </small></label>
-                    <input type="checkbox" id="prof-arcanismo" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-arcanismo"> +0 </span>
-                    <label for="prof-arcanismo"> Arcanismo <small> (INT) </small></label>
-                    <input type="checkbox" id="prof-atletismo" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-atletismo"> +0 </span>
-                    <label for="prof-atletismo"> Atletismo <small> (FOR) </small></label>
-                    <input type="checkbox" id="prof-atuacao" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-atuacao"> +0 </span>
-                    <label for="prof-atuacao"> Atuação <small> (CAR) </small></label>
-                    <input type="checkbox" id="prof-blefar" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-blefar"> +0 </span>
-                    <label for="prof-blefar"> Blefar <small> (CAR) </small></label>
-                    <input type="checkbox" id="prof-furtividade" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-furtividade"> +0 </span>
-                    <label for="prof-furtividade"> Furtividade <small> (DES) </small></label>
-                    <input type="checkbox" id="prof-historia" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-historia"> +0 </span>
-                    <label for="prof-historia"> História <small> (INT) </small></label>
-                    <input type="checkbox" id="prof-intuicao" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-intuicao"> +0 </span>
-                    <label for="prof-intuicao"> Intuição <small> (SAB) </small></label>
-                    <input type="checkbox" id="prof-intimidacao" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-intimidacao"> +0 </span>
-                    <label for="prof-intimidacao"> Intimidação <small> (CAR) </small></label>
-                    <input type="checkbox" id="prof-investigacao" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-investigacao"> +0 </span>
-                    <label for="prof-investigacao"> Investigação <small> (INT) </small></label>
-                    <input type="checkbox" id="prof-medicina" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-medicina"> +0 </span>
-                    <label for="prof-medicina"> Medicina <small> (SAB) </small></label>
-                    <input type="checkbox" id="prof-natureza" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-natureza"> +0 </span>
-                    <label for="prof-natureza"> Natureza <small> (INT) </small></label>
-                    <input type="checkbox" id="prof-percepcao" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-percepcao"> +0 </span>
-                    <label for="prof-percepcao"> Percepção <small> (SAB) </small></label>
-                    <input type="checkbox" id="prof-persuasao" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-persuasao"> +0 </span>
-                    <label for="prof-persuasao"> Persuasão <small> (CAR) </small></label>
-                    <input type="checkbox" id="prof-prestidigitacao" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-prestidigitacao"> +0 </span>
-                    <label for="prof-prestidigitacao"> Prestidigitação <small> (DES) </small></label>
-                    <input type="checkbox" id="prof-religiao" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-religiao"> +0 </span>
-                    <label for="prof-religiao"> Religião <small> (INT) </small></label>
-                    <input type="checkbox" id="prof-sobrevivencia" onchange="calcularPericias()">
-                    <span class="pericia-mod" id="mod-sobrevivencia"> +0 </span>
-                    <label for="prof-sobrevivencia"> Sobrevivência <small> (SAB) </small></label>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="ataque-container">
-            <h3> Ataques e Magias</h3>
-            <table class="tabela-ataques">
-                <thead>
-                    <tr>
-                        <th> Nome </th>
-                        <th> Bônus de Ataque </th>
-                        <th> Dano/Tipo </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> <input type="text" placeholder="Ex: Espada Curta"> </td>
-                        <td> <input type="text" placeholder="+5"> </td>
-                        <td> <input type="text" placeholder="1d6 Cortante"> </td>
-                    </tr>
-                    <tr>
-                        <td> <input type="text" placeholder="Ex: Arco Longo"> </td>
-                        <td> <input type="text" placeholder="+5"> </td>
-                        <td> <input type="text" placeholder="1d8 Perfurante"> </td>
-                    </tr>
-                    <tr>
-                        <td> <input type="text" placeholder="Ex: Bola de Fogo"> </td>
-                        <td> <input type="text" placeholder="CD Destreza"> </td>
-                        <td> <input type="text" placeholder="8d6 Fogo"> </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="caracteristicas-container">
-            <h3> Talentos e Caracteristicas de Classe </h3>
-            <div class="campo-texto-caracteristicas">
-                <textarea id="class-features" placeholder="Ex: &#10; - Fúria (Bárbaro) Você pode entrar em fúria com ação bônus... &#20;" rows="10"></textarea>
-            </div>
-        </div>
-
-        <div class="raciais-container"> 
-            <h3> Traços e Habilidades Raciais </h3>
-            <div class=campo-texto-raciais>
-                <textarea id="racial-traits" placeholder="Ex: &#10;- Visão no Escuro: Enxerga na penumbra como se fosse luz plena a até 18 metros...&#10;" rows="10"></textarea>
-            </div>
-        </div>
-
-        <div class="proficiencias-idiomas-container"> 
-            <h3> Proficiências e Idiomas </h3>
-            <div class="campo-texto-proficiencia">
-                <textarea id="other-proficiencies" placeholder="Ex: &#10;- Idiomas: Comum, Élfico, Anão&#10;- Armas: Armas Simples, Espadas Longas&#10;- Armaduras: Leves, Médias, Escudos&#10;- Ferramentas: Kit de Disfarce, Ferramentas de Ferreiro" rows="10"></textarea>
-            </div>
-        </div>
-
-        <div class="status-secundarios">
-            <div class="caixa">
-                <label>CA</label>
-                <input type="number" value="10">
-                <label>Sabedoria Passiva</label>
-                <span id="passive-perception">10</span>
-            </div>
+        <section id="aba-geral" class="tab-conteudo active">
             
-            <div class="bloco-vida">
-                <div class="vida-valores">
+            <header>
+                <div class="bloco-informacoes">
+                    <div class="linha-principal">
+                        <input type="text" id="char-name" placeholder="Nome do Personagem">
+                        <input type="text" id="char-class" placeholder="Classe e Nível (Ex: Mago 5)">
+                    </div>
+                    <div class="linha-secundaria">
+                        <input type="text" id="char-race" placeholder="Raça">
+                        <input type="text" id="char-antecedente" placeholder="Antecedente">
+                        <input type="text" id="char-alinhamento" placeholder="Alinhamento">
+                    </div>
+                </div>
+                <div class="bloco-progressao">
+                    <div class="campo-progresso">
+                        <label for="char-level">Nível</label>
+                        <input type="number" id="char-level" value="1" min="1" max="20">
+                        <label>Bônus de Proficiência</label>
+                        <span id="prof-bonus">+2</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="status-secundarios">
+                <div class="caixa">
+                    <label for="armor-class">Classe de Armadura (CA)</label>
+                    <input type="number" id="armor-class" value="10">
+                    <label for="initiative">Iniciativa</label>
+                    <input type="number" id="initiative" value="0">
+                    <label for="speed">Deslocamento</label>
+                    <input type="text" id="speed" placeholder="9m">
+                </div>
+
+                <div class="bloco-vida">
                     <div class="caixa-vida">
-                        <label for="hp-max">PV Máximos</label>
-                        <input type="number" id="hp-max" placeholder="0" min="0">
-                        <label for="hp-current">PV Atuais</label>
-                        <input type="number" id="hp-current" placeholder="0" min="0">
-                        <label for="hp-temp">PV Temporários</label>
-                        <input type="number" id="hp-temp" placeholder="0" min="0">
+                        <label for="hp-max">Vida Máxima</label>
+                        <label for="hp-atual">Vida Atual</label>
+                        <label for="hp-temp">Vida Temporária</label>
+                        <input type="number" id="hp-max" value="10">
+                        <input type="number" id="hp-atual" value="10">
+                        <input type="number" id="hp-temp" value="0">
                     </div>
-                </div>
-
-                <div class="dados-vida">
                     <div class="caixa-dados">
-                        <label for="hit-dice-total">Total de Dados de Vida</label>
-                        <input type="text" id="hit-dice-total" placeholder="1d8">
-                        <label for="hit-dice-remaining">Dados de Vida Restantes</label>
-                        <input type="number" id="hit-dice-remaining" min="0">
+                        <label for="hit-dice">Dados de Vida:</label>
+                        <input type="text" id="hit-dice" placeholder="1d6">
                     </div>
-                </div>
-
-                <div class="testes-morte"> 
-                    <span class="titulo-morte">Testes Contra Morte</span>
-                    <div class="linha-morte">
-                        <label>Sucessos</label>
-                        <div class="checkbox-grupo"> 
-                            <input type="checkbox" id="death-success-1">
-                            <input type="checkbox" id="death-success-2">
-                            <input type="checkbox" id="death-success-3">
-                        </div>
-                        <label>Falhas</label>
-                        <div class="checkbox-grupo">
-                            <input type="checkbox" id="death-failure-1">
-                            <input type="checkbox" id="death-failure-2">
-                            <input type="checkbox" id="death-failure-3">
+                    <div class="testes-morte">
+                        <span class="titulo-morte">Testes Contra a Morte</span>
+                        <div class="linha-morte">
+                            <label>Sucessos:</label>
+                            <div class="checkbox-grupo">
+                                <input type="checkbox" id="death-success-1">
+                                <input type="checkbox" id="death-success-2">
+                                <input type="checkbox" id="death-success-3">
+                            </div>
+                            <label>Falhas:</label>
+                            <div class="checkbox-grupo">
+                                <input type="checkbox" id="death-failure-1">
+                                <input type="checkbox" id="death-failure-2">
+                                <input type="checkbox" id="death-failure-3">
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="caixa">
+                    <label>Percepção Passiva</label>
+                    <span id="passive-perception">10</span>
+                </div>
             </div>
-        </div>
 
-        <section id="aba-magias" class="tab-conteudo active">
+            <div class="atributos-grid">
+                <div class="atributo-card">
+                    <label for="attr-str">Força</label>
+                    <span class="modificador" id="mod-str">+0</span>
+                    <input type="number" id="attr-str" value="10">
+                </div>
+                <div class="atributo-card">
+                    <label for="attr-dex">Destreza</label>
+                    <span class="modificador" id="mod-dex">+0</span>
+                    <input type="number" id="attr-dex" value="10">
+                </div>
+                <div class="atributo-card">
+                    <label for="attr-con">Constituição</label>
+                    <span class="modificador" id="mod-con">+0</span>
+                    <input type="number" id="attr-con" value="10">
+                </div>
+                <div class="atributo-card">
+                    <label for="attr-int">Inteligência</label>
+                    <span class="modificador" id="mod-int">+0</span>
+                    <input type="number" id="attr-int" value="10">
+                </div>
+                <div class="atributo-card">
+                    <label for="attr-wis">Sabedoria</label>
+                    <span class="modificador" id="mod-wis">+0</span>
+                    <input type="number" id="attr-wis" value="10">
+                </div>
+                <div class="atributo-card">
+                    <label for="attr-cha">Carisma</label>
+                    <span class="modificador" id="mod-cha">+0</span>
+                    <input type="number" id="attr-cha" value="10">
+                </div>
+            </div>
+
+            <div class="salvaguardas-container">
+                <h3>Testes de Resistência (Salvaguardas)</h3>
+                <div class="lista-salvaguardas">
+                    <div class="salvaguarda-linha">
+                        <input type="checkbox" id="prof-save-str">
+                        <span class="salvaguarda-mod" id="save-str">+0</span>
+                        <label for="prof-save-str">Força</label>
+                    </div>
+                    <div class="salvaguarda-linha">
+                        <input type="checkbox" id="prof-save-dex">
+                        <span class="salvaguarda-mod" id="save-dex">+0</span>
+                        <label for="prof-save-dex">Destreza</label>
+                    </div>
+                    <div class="salvaguarda-linha">
+                        <input type="checkbox" id="prof-save-con">
+                        <span class="salvaguarda-mod" id="save-con">+0</span>
+                        <label for="prof-save-con">Constituição</label>
+                    </div>
+                    <div class="salvaguarda-linha">
+                        <input type="checkbox" id="prof-save-int">
+                        <span class="salvaguarda-mod" id="save-int">+0</span>
+                        <label for="prof-save-int">Inteligência</label>
+                    </div>
+                    <div class="salvaguarda-linha">
+                        <input type="checkbox" id="prof-save-wis">
+                        <span class="salvaguarda-mod" id="save-wis">+0</span>
+                        <label for="prof-save-wis">Sabedoria</label>
+                    </div>
+                    <div class="salvaguarda-linha">
+                        <input type="checkbox" id="prof-save-cha">
+                        <span class="salvaguarda-mod" id="save-cha">+0</span>
+                        <label for="prof-save-cha">Carisma</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pericias-container">
+                <h3>Perícias</h3>
+                <div class="lista-pericias">
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-acrobatics">
+                        <span class="pericia-mod" id="mod-acrobatics">+0</span>
+                        <label for="prof-acrobatics">Acrobacia <small>(Des)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-animal-handling">
+                        <span class="pericia-mod" id="mod-animal-handling">+0</span>
+                        <label for="prof-animal-handling">Adestrar Animais <small>(Sab)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-arcana">
+                        <span class="pericia-mod" id="mod-arcana">+0</span>
+                        <label for="prof-arcana">Arcanismo <small>(Int)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-athletics">
+                        <span class="pericia-mod" id="mod-athletics">+0</span>
+                        <label for="prof-athletics">Atletismo <small>(For)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-deception">
+                        <span class="pericia-mod" id="mod-deception">+0</span>
+                        <label for="prof-deception">Enganação <small>(Car)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-history">
+                        <span class="pericia-mod" id="mod-history">+0</span>
+                        <label for="prof-history">História <small>(Int)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-insight">
+                        <span class="pericia-mod" id="mod-insight">+0</span>
+                        <label for="prof-insight">Intuição <small>(Sab)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-intimidation">
+                        <span class="pericia-mod" id="mod-intimidation">+0</span>
+                        <label for="prof-intimidation">Intimidação <small>(Car)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-investigation">
+                        <span class="pericia-mod" id="mod-investigation">+0</span>
+                        <label for="prof-investigation">Investigação <small>(Int)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-medicine">
+                        <span class="pericia-mod" id="mod-medicine">+0</span>
+                        <label for="prof-medicine">Medicina <small>(Sab)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-nature">
+                        <span class="pericia-mod" id="mod-nature">+0</span>
+                        <label for="prof-nature">Natureza <small>(Int)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-perception">
+                        <span class="pericia-mod" id="mod-perception">+0</span>
+                        <label for="prof-perception">Percepção <small>(Sab)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-performance">
+                        <span class="pericia-mod" id="mod-performance">+0</span>
+                        <label for="prof-performance">Atuação <small>(Car)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-persuasion">
+                        <span class="pericia-mod" id="mod-persuasion">+0</span>
+                        <label for="prof-persuasion">Persuasão <small>(Car)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-religion">
+                        <span class="pericia-mod" id="mod-religion">+0</span>
+                        <label for="prof-religion">Religião <small>(Int)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-sleight-of-hand">
+                        <span class="pericia-mod" id="mod-sleight-of-hand">+0</span>
+                        <label for="prof-sleight-of-hand">Prestidigitação <small>(Des)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-stealth">
+                        <span class="pericia-mod" id="mod-stealth">+0</span>
+                        <label for="prof-stealth">Furtividade <small>(Des)</small></label>
+                    </div>
+                    <div class="pericia-linha">
+                        <input type="checkbox" id="prof-survival">
+                        <span class="pericia-mod" id="mod-survival">+0</span>
+                        <label for="prof-survival">Sobrevivência <small>(Sab)</small></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ataques-container">
+                <h3>Ataques e Truques (Combate)</h3>
+                <table class="tabela-ataques">
+                    <thead>
+                        <tr>
+                            <th>Nome do Ataque</th>
+                            <th>Bônus de Ataque</th>
+                            <th>Dano / Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" placeholder="Ex: Espada Curta"></td>
+                            <td><input type="text" placeholder="+5"></td>
+                            <td><input type="text" placeholder="1d6 + 3 Cortante"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Ex: Arco Curto"></td>
+                            <td><input type="text" placeholder="+5"></td>
+                            <td><input type="text" placeholder="1d6 + 3 Perfurante"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Ex: Raio de Fogo (Truque)"></td>
+                            <td><input type="text" placeholder="+4"></td>
+                            <td><input type="text" placeholder="1d10 Fogo"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="proficiencias-idiomas-container">
+                <h3>Outras Proficiências e Idiomas</h3>
+                <textarea placeholder="Idiomas: Comum, Élfico&#10;Armaduras: Leves, Escudos&#10;Armas: Armas Simples, Espadas Longas&#10;Ferramentas: Kit de Venenos" rows="4"></textarea>
+            </div>
+
+            <div class="caracteristicas-container">
+                <h3>Características e Talentos</h3>
+                <textarea placeholder="Escreva aqui os traços raciais, habilidades de classe e talentos do seu personagem..." rows="6"></textarea>
+            </div>
+
+        </section>
+
+        <section id="aba-magias" class="tab-conteudo">
+            
             <div class="cabecalho-magico">
                 <div class="campo-magico">
                     <label for="spell-casting-ability"> Atributo de Conjuração </label>
@@ -278,164 +314,155 @@
                     <label> Bônus de Ataque de Magias </label>
                     <span id="spell-attack-bonus"> +0 </span>
                 </div>
-                <div class="slots-magia-container">
-                    <h3> Espaços de Magia Por Circulo </h3>
-                    <div class="grade-slots-magia">
-                        <div class="circulo-slot-linha">
-                            <span class="nome-circulo"> 1º Circulo </span>
-                            <div class="campos-slots">
-                                <label> Total: </label>
-                                <input type="number" id="slots-total-lvl1" min="0" max="4" value="0">
-                                <label> Gastos: </label>
-                                <input type="number" id="slots-gastos-lvl1" min="0" max="4" value="0">
-                            </div>
-                            <span class="nome-circulo"> 2º Circulo </span>
-                            <div class="campos-slots">
-                                <label> Total: </label>
-                                <input type="number" id="slots-total-lvl2" min="0" max="3" value="0">
-                                <label> Gastos: </label>
-                                <input type="number" id="slots-gastos-lvl2" min="0" max="3" value="0">
-                            </div>
-                            <span class="nome-circulo"> 3º Circulo </span>
-                            <div class="campos-slots">
-                                <label> Total: </label>
-                                <input type="number" id="slots-total-lvl3" min="0" max="3" value="0">
-                                <label> Gastos: </label>
-                                <input type="number" id="slots-gastos-lvl3" min="0" max="3" value="0">
-                            </div>
-                            <span class="nome-circulo"> 4º Circulo </span>
-                            <div class="campos-slots">
-                                <label> Total: </label>
-                                <input type="number" id="slots-total-lvl4" min="0" max="3" value="0">
-                                <label> Gastos: </label>
-                                <input type="number" id="slots-gastos-lvl4" min="0" max="3" value="0">
-                            </div>
-                            <span class="nome-circulo"> 5º Circulo </span>
-                            <div class="campos-slots">
-                                <label> Total: </label>
-                                <input type="number" id="slots-total-lvl5" min="0" max="3" value="0">
-                                <label> Gastos: </label>
-                                <input type="number" id="slots-gastos-lvl5" min="0" max="3" value="0">
-                            </div>
-                            <span class="nome-circulo"> 6º Circulo </span>
-                            <div class="campos-slots">
-                                <label> Total: </label>
-                                <input type="number" id="slots-total-lvl6" min="0" max="2" value="0">
-                                <label> Gastos: </label>
-                                <input type="number" id="slots-gastos-lvl6" min="0" max="2" value="0">
-                            </div>
-                            <span class="nome-circulo"> 7º Circulo </span>
-                            <div class="campos-slots">
-                                <label> Total: </label>
-                                <input type="number" id="slots-total-lvl7" min="0" max="2" value="0">
-                                <label> Gastos: </label>
-                                <input type="number" id="slots-gastos-lvl7" min="0" max="2" value="0">
-                            </div>
-                            <span class="nome-circulo"> 8º Circulo </span>
-                            <div class="campos-slots">
-                                <label> Total: </label>
-                                <input type="number" id="slots-total-lvl8" min="0" max="1" value="0">
-                                <label> Gastos: </label>
-                                <input type="number" id="slots-gastos-lvl8" min="0" max="1" value="0">
-                            </div>
-                            <span class="nome-circulo"> 9º Circulo </span>
-                            <div class="campos-slots">
-                                <label> Total: </label>
-                                <input type="number" id="slots-total-lvl9" min="0" max="1" value="0">
-                                <label> Gastos: </label>
-                                <input type="number" id="slots-gastos-lvl9" min="0" max="1" value="0">
-                            </div>
+            </div>
+
+            <div class="slots-magia-container">
+                <h3> Espaços de Magia Por Círculo </h3>
+                <div class="grade-slots-magia">
+                    <div class="circulo-slot-linha">
+                        <div class="campos-slots">
+                            <span class="nome-circulo"> 1º Círculo: </span>
+                            <label> Total: </label>
+                            <input type="number" id="slots-total-lvl1" min="0" max="4" value="0">
+                            <label> Gastos: </label>
+                            <input type="number" id="slots-gastos-lvl1" min="0" max="4" value="0">
+                        </div>
+                        <div class="campos-slots">
+                            <span class="nome-circulo"> 2º Círculo: </span>
+                            <label> Total: </label>
+                            <input type="number" id="slots-total-lvl2" min="0" max="3" value="0">
+                            <label> Gastos: </label>
+                            <input type="number" id="slots-gastos-lvl2" min="0" max="3" value="0">
+                        </div>
+                        <div class="campos-slots">
+                            <span class="nome-circulo"> 3º Círculo: </span>
+                            <label> Total: </label>
+                            <input type="number" id="slots-total-lvl3" min="0" max="3" value="0">
+                            <label> Gastos: </label>
+                            <input type="number" id="slots-gastos-lvl3" min="0" max="3" value="0">
+                        </div>
+                        <div class="campos-slots">
+                            <span class="nome-circulo"> 4º Círculo: </span>
+                            <label> Total: </label>
+                            <input type="number" id="slots-total-lvl4" min="0" max="3" value="0">
+                            <label> Gastos: </label>
+                            <input type="number" id="slots-gastos-lvl4" min="0" max="3" value="0">
+                        </div>
+                        <div class="campos-slots">
+                            <span class="nome-circulo"> 5º Círculo: </span>
+                            <label> Total: </label>
+                            <input type="number" id="slots-total-lvl5" min="0" max="3" value="0">
+                            <label> Gastos: </label>
+                            <input type="number" id="slots-gastos-lvl5" min="0" max="3" value="0">
+                        </div>
+                        <div class="campos-slots">
+                            <span class="nome-circulo"> 6º Círculo: </span>
+                            <label> Total: </label>
+                            <input type="number" id="slots-total-lvl6" min="0" max="2" value="0">
+                            <label> Gastos: </label>
+                            <input type="number" id="slots-gastos-lvl6" min="0" max="2" value="0">
+                        </div>
+                        <div class="campos-slots">
+                            <span class="nome-circulo"> 7º Círculo: </span>
+                            <label> Total: </label>
+                            <input type="number" id="slots-total-lvl7" min="0" max="2" value="0">
+                            <label> Gastos: </label>
+                            <input type="number" id="slots-gastos-lvl7" min="0" max="2" value="0">
+                        </div>
+                        <div class="campos-slots">
+                            <span class="nome-circulo"> 8º Círculo: </span>
+                            <label> Total: </label>
+                            <input type="number" id="slots-total-lvl8" min="0" max="1" value="0">
+                            <label> Gastos: </label>
+                            <input type="number" id="slots-gastos-lvl8" min="0" max="1" value="0">
+                        </div>
+                        <div class="campos-slots">
+                            <span class="nome-circulo"> 9º Círculo: </span>
+                            <label> Total: </label>
+                            <input type="number" id="slots-total-lvl9" min="0" max="1" value="0">
+                            <label> Gastos: </label>
+                            <input type="number" id="slots-gastos-lvl9" min="0" max="1" value="0">
                         </div>
                     </div>
                 </div>
-                <div class="lista-magias-container">
-                    <h3> Magias Conhecidas/Preparadas </h3>
-                    <div class="grade-grimorio-linhas">
-                        <div class="bloco-nivel-magia">
-                            <div class="bloco-nivel-magia">
-                                <span class="titulo-nivel-magia"> Truques (Nivel 0) </span>
-                            </div>
-                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Toque Chocante&#10;- Mãos Mágicas&#10;- Ilusão Menor" rows="6"></textarea>
-                        </div>
+            </div>
 
-                        <div class="bloco-nivel-magia">
-                            <div class="bloco-nivel-magia">
-                                <span class="titulo-nivel-magia"> 1º Círculo </span>
-                            </div>
-                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Mísseis Mágicos (P)&#10;- Armadura Arpão&#10;- Curar Ferimentos" rows="6"></textarea>
-                        </div>
+            <div class="lista-magias-container">
+                <h3> Magias Conhecidas/Preparadas </h3>
+                <div class="grade-grimorio-linhas">
+                    <div class="bloco-nivel-magia">
+                        <span class="titulo-nivel-magia"> Truques (Nível 0) </span>
+                        <textarea class="textarea-magias" placeholder="Ex:&#10;- Toque Chocante&#10;- Mãos Mágicas&#10;- Ilusão Menor" rows="6"></textarea>
+                    </div>
 
-                        <div class="bloco-nivel-magia">
-                            <div class="bloco-nivel-magia">
-                                <span class="titulo-nivel-magia"> 2º Círculo </span>
-                            </div>
-                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Passo Nebuloso (P)&#10;- Imagem Espelhada" rows="6"></textarea>
-                        </div>
+                    <div class="bloco-nivel-magia">
+                        <span class="titulo-nivel-magia"> 1º Círculo </span>
+                        <textarea class="textarea-magias" placeholder="Ex:&#10;- Mísseis Mágicos (P)&#10;- Armadura Arpão&#10;- Curar Ferimentos" rows="6"></textarea>
+                    </div>
 
-                        <div class="bloco-nivel-magia">
-                            <div class="bloco-nivel-magia">
-                                <span class="titulo-nivel-magia"> 3º Círculo </span>
-                            </div>
-                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Bola de Fogo (P)&#10;- Contra-enfeitiçar" rows="6"></textarea>
-                        </div>
+                    <div class="bloco-nivel-magia">
+                        <span class="titulo-nivel-magia"> 2º Círculo </span>
+                        <textarea class="textarea-magias" placeholder="Ex:&#10;- Passo Nebuloso (P)&#10;- Imagem Espelhada" rows="6"></textarea>
+                    </div>
 
-                        <div class="bloco-nivel-magia">
-                            <div class="bloco-nivel-magia">
-                                <span class="titulo-nivel-magia"> 4º Círculo </span>
-                            </div>
-                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Porta Dimensional&#10;- Pele de Pedra" rows="6"></textarea>
-                        </div>
+                    <div class="bloco-nivel-magia">
+                        <span class="titulo-nivel-magia"> 3º Círculo </span>
+                        <textarea class="textarea-magias" placeholder="Ex:&#10;- Bola de Fogo (P)&#10;- Contra-enfeitiçar" rows="6"></textarea>
+                    </div>
 
-                        <div class="bloco-nivel-magia">
-                            <div class="bloco-nivel-magia">
-                                <span class="titulo-nivel-magia"> 5º Círculo </span>
-                            </div>
-                            <textarea class="textarea-magias" placeholder="Ex:&#10;- Névoa Mortal&#10;- Dominar Pessoa" rows="6"></textarea>
-                        </div>
+                    <div class="bloco-nivel-magia">
+                        <span class="titulo-nivel-magia"> 4º Círculo </span>
+                        <textarea class="textarea-magias" placeholder="Ex:&#10;- Porta Dimensional&#10;- Pele de Pedra" rows="6"></textarea>
+                    </div>
 
-                        <div class="bloco-nivel-magia">
-                            <div class="bloco-nivel-magia">
-                                <span class="titulo-nivel-magia"> 6º ao 9º Círculo </span>
-                            </div>
-                            <textarea class="textarea-magias"placeholder="6º: Desintegrar&#10;7º: Teletransporte&#10;8º: Dominar Monstro&#10;9º: Desejo" rows="8"></textarea>
-                        </div>
+                    <div class="bloco-nivel-magia">
+                        <span class="titulo-nivel-magia"> 5º Círculo </span>
+                        <textarea class="textarea-magias" placeholder="Ex:&#10;- Névoa Mortal&#10;- Dominar Pessoa" rows="6"></textarea>
+                    </div>
 
+                    <div class="bloco-nivel-magia">
+                        <span class="titulo-nivel-magia"> 6º ao 9º Círculo </span>
+                        <textarea class="textarea-magias" placeholder="6º: Desintegrar&#10;7º: Teletransporte&#10;8º: Dominar Monstro&#10;9º: Desejo" rows="6"></textarea>
                     </div>
                 </div>
+            </div>
 
-                <div class="inventario-container">
-                    <h3> Inventario e Equipamentos </h3>
-                    <div class="grade-inventario">
-                        <div class="bloco-moedas">
-                            <h4> Moedas </h4>
-                            <div class="linha-moeda">
-                                <label for="coin-cp"> PC (Cobre): </label>
-                                <input type="number" id="coin-cp" value="0" min="0">
-                                <label for="coin-sp"> PP (Prata): </label>
-                                <input type="number" id="coin-sp" value="0" min="0">
-                                <label for="coin-ep"> PE (Electro): </label>
-                                <input type="number" id="coin-ep" value="0" min="0">
-                                <label for="coin-gp"> PO (Ouro): </label>
-                                <input type="number" id="coin-gp" value="0" min="0">
-                                <label for="coin-pp"> PL (Platina): </label>
-                                <input type="number" id="coin-pp" value="0" min="0">
-                            </div> 
-                        </div>
-
-                        <div class="bloco-itens">
-                            <div class="topo-itens">
-                                <h4> Equipamentos e Itens Possuídos </h4>
-                                <div class="controle-carga">
-                                    <label for="weight-total"> Peso Total: </label>
-                                    <input type="text" id="weight-total" placeholder="0 kg" style="width: 70px;">
-                                </div>
-                            </div>
-                            <textarea id="inventory-list" placeholder="Ex:&#10;- Armadura de Couro Batido (Equipada)&#10;- Mochila de Engenheiro&#10;- Corda de Cânhamo (15 metros)&#10;- Rações de Viagem (x5)&#10;- Tochas (x3)" rows="10"></textarea>
-                        </div>
+            <div class="inventario-container">
+                <h3> Inventário e Equipamentos </h3>
+                <div class="grade-inventario">
+                    <div class="bloco-moedas">
+                        <h4> Moedas </h4>
+                        <div class="linha-moeda">
+                            <label for="coin-cp"> PC: </label>
+                            <input type="number" id="coin-cp" value="0" min="0">
+                            <label for="coin-sp"> PP: </label>
+                            <input type="number" id="coin-sp" value="0" min="0">
+                            <label for="coin-ep"> PE: </label>
+                            <input type="number" id="coin-ep" value="0" min="0">
+                            <label for="coin-gp"> PO: </label>
+                            <input type="number" id="coin-gp" value="0" min="0">
+                            <label for="coin-pp"> PL: </label>
+                            <input type="number" id="coin-pp" value="0" min="0">
+                        </div> 
                     </div>
+
+                    <div class="bloco-itens">
+                        <div class="topo-itens">
+                            <h4> Equipamentos e Itens Possuídos </h4>
+                            <div class="controle-carga">
+                                <label for="weight-total"> Peso Total: </label>
+                                <input type="text" id="weight-total" placeholder="0 kg" style="width: 70px;">
+                            </div>
+                        </div>
+                        <textarea id="inventory-list" placeholder="Ex:&#10;- Armadura de Couro Batido (Equipada)&#10;- Mochila de Engenheiro&#10;- Corda de Cânhamo (15 metros)&#10;- Rações de Viagem (x5)&#10;- Tochas (x3)" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
 
         </section>
 
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
